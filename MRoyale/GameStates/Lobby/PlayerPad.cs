@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 
-namespace MRoyale
+namespace MRoyale.GameStates.Lobby
 {
     /*
      * TODO: Move to sprite class

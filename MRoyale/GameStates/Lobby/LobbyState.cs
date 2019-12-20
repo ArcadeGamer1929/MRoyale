@@ -1,19 +1,17 @@
 ﻿#region Using Statements
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
 using CyuubiApps.Engine.StateManager;
-using CyuubiApps.Engine;
 using System;
 #endregion
 
-namespace MRoyale.GameStates
+namespace MRoyale.GameStates.Lobby
 {
-    public interface ILobby : IGameState
+    public interface ILobbyState : IGameState
     { }
 
-    public class Lobby : BaseGameState, ILobby
+    public class LobbyState : BaseGameState, ILobbyState
     {
         #region Field Region
 
@@ -26,10 +24,10 @@ namespace MRoyale.GameStates
 
         #region Constructor Region
 
-        public Lobby(Game game)
+        public LobbyState(Game game)
             : base(game)
         {
-            game.Services.AddService(typeof(ILobby), this);
+            game.Services.AddService(typeof(ILobbyState), this);
         }
 
         #endregion
@@ -43,14 +41,14 @@ namespace MRoyale.GameStates
 
             _playerPad.OnPadClick += OnPadClick;
             _playerPad.Position = new Vector2(250, 100);
-            _playerPad.Scale = 3;
+            _playerPad.Scale = 8;
 
             base.Initialize();
         }
 
         private void OnPadClick(object sender, EventArgs e)
         {
-            System.Diagnostics.Debug.WriteLine("CLICKED!");
+            System.Diagnostics.Debug.WriteLine("Clicked!");
         }
 
         public override void Update(GameTime gameTime)
@@ -60,7 +58,7 @@ namespace MRoyale.GameStates
             if (state.IsKeyDown(Keys.Space) & !_previousState.IsKeyDown(Keys.Space))
             {
                 if (!_characterToggle) _playerPad.ChangeCharacter("mario");
-                else _playerPad.ChangeCharacter(string.Empty);
+                else _playerPad.ChangeCharacter("paddler");
 
                 _characterToggle = !_characterToggle;
             }

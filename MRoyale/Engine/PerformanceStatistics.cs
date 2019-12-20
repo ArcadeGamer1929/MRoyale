@@ -11,15 +11,19 @@ namespace CyuubiApps.Engine
     {
         #region Field Region
 
+        private const int MAXIMUM_SAMPLES = 100;
+
+        private Queue<float> _sampleBuffer = new Queue<float>();
+
+        #endregion
+
+        #region Property Region
+
         public long TotalFrames { get; private set; }
         public float TotalSeconds { get; private set; }
         public float AverageFramesPerSecond { get; private set; }
         public float CurrentFramesPerSecond { get; private set; }
         public float HighestFramesPerSecond { get; private set; }
-
-        private const int MAXIMUM_SAMPLES = 100;
-
-        private Queue<float> _sampleBuffer = new Queue<float>();
 
         #endregion
 
@@ -46,8 +50,7 @@ namespace CyuubiApps.Engine
                 _sampleBuffer.Dequeue();
                 AverageFramesPerSecond = _sampleBuffer.Average(i => i);
             }
-            else
-                AverageFramesPerSecond = CurrentFramesPerSecond;
+            else AverageFramesPerSecond = CurrentFramesPerSecond;
 
             TotalFrames++;
             TotalSeconds += deltaTime;

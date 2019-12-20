@@ -24,6 +24,10 @@
   <Import Project="..\MRoyale\MRoyale.projitems" Label="Shared" />
 
   <ItemGroup>
+    <ProjectReference Include="..\websocket-sharp\websocket-sharp\websocket-sharp.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
   </ItemGroup>
 

@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework.Graphics;
 using CyuubiApps.Engine;
 using CyuubiApps.Engine.StateManager;
 
-using MRoyale.GameStates;
+using MRoyale.GameStates.Lobby;
 #endregion
 
 namespace MRoyale
@@ -29,8 +29,8 @@ namespace MRoyale
         private PerformanceStatistics _performanceStatistics;
         public GameStateManager StateManager;
 
-        // States
-        public ILobby Lobby;
+        // Game states
+        public ILobbyState GameLobby;
 
         #endregion
 
@@ -54,19 +54,18 @@ namespace MRoyale
             StateManager = new GameStateManager(this);
 
             // Initialize states
-            Lobby = new Lobby(this);
+            GameLobby = new LobbyState(this);
 
             // Add game components
             Components.Add(_performanceStatistics);
             Components.Add(StateManager);
 
-            StateManager.ChangeState((Lobby)Lobby); // Change state to lobby
+            StateManager.ChangeState((LobbyState)GameLobby); // Change state to game lobby
 
-            // Enable unlimited FPS, mouse visible, allow user resizing and set title
+            // Enable unlimited FPS, mouse visible and set title
             IsFixedTimeStep = false;
             IsMouseVisible = true;
 
-            Window.AllowUserResizing = true; // TODO: Improve scaling for this
             Window.Title = "Mario Royale";
         }
 

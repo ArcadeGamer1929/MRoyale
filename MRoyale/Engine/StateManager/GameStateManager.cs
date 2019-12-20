@@ -33,18 +33,18 @@ namespace CyuubiApps.Engine.StateManager
 
         #endregion
 
-        #region Event Handler Region
-
-        public event EventHandler StateChanged;
-
-        #endregion
-
         #region Property Region
 
         public GameState CurrentState
         {
             get { return _gameStates.Peek(); }
         }
+
+        #endregion
+
+        #region Event Handler Region
+
+        public event EventHandler StateChanged;
 
         #endregion
 

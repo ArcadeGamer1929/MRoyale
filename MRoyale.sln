@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MRoyale.Android", "MRoyale.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MRoyale.Windows", "MRoyale.Windows\MRoyale.Windows.csproj", "{155F6249-9CDE-421E-BD78-496FCDEC788D}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "websocket-sharp", "websocket-sharp\websocket-sharp\websocket-sharp.csproj", "{AD9322DD-485C-435D-B09E-40BB45B57F32}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		MRoyale\MRoyale.projitems*{155f6249-9cde-421e-bd78-496fcdec788d}*SharedItemsImports = 4
@@ -52,6 +54,14 @@ Global
 		{155F6249-9CDE-421E-BD78-496FCDEC788D}.Release|Any CPU.Build.0 = Release|x86
 		{155F6249-9CDE-421E-BD78-496FCDEC788D}.Release|x86.ActiveCfg = Release|x86
 		{155F6249-9CDE-421E-BD78-496FCDEC788D}.Release|x86.Build.0 = Release|x86
+		{AD9322DD-485C-435D-B09E-40BB45B57F32}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD9322DD-485C-435D-B09E-40BB45B57F32}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD9322DD-485C-435D-B09E-40BB45B57F32}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{AD9322DD-485C-435D-B09E-40BB45B57F32}.Debug|x86.Build.0 = Debug|Any CPU
+		{AD9322DD-485C-435D-B09E-40BB45B57F32}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD9322DD-485C-435D-B09E-40BB45B57F32}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD9322DD-485C-435D-B09E-40BB45B57F32}.Release|x86.ActiveCfg = Release|Any CPU
+		{AD9322DD-485C-435D-B09E-40BB45B57F32}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
