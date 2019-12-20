@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>bb714382-e608-4683-9f2a-a7d34b494754</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>MRoyale</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <MonoGameContentReference Include="$(MSBuildThisFileDirectory)Content\Content.mgcb" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Engine\PerformanceStatistics.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Engine\StateManager\BaseGameState.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Engine\StateManager\GameState.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Engine\StateManager\GameStateManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GameBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GameStates\Lobby\LobbyState.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GameStates\Lobby\PlayerPad.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)GameStates\Lobby\" />
+  </ItemGroup>
+</Project>
