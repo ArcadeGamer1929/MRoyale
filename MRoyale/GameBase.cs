@@ -6,6 +6,7 @@ using CyuubiApps.Engine;
 using CyuubiApps.Engine.StateManager;
 
 using MRoyale.GameStates.Lobby;
+using MRoyale.GameStates.World;
 #endregion
 
 namespace MRoyale
@@ -27,10 +28,13 @@ namespace MRoyale
 
         // Game components
         private PerformanceStatistics _performanceStatistics;
+
+        // Game state manager
         public GameStateManager StateManager;
 
         // Game states
         public ILobbyState GameLobby;
+        public IWorldState GameWorld;
 
         #endregion
 
@@ -51,16 +55,20 @@ namespace MRoyale
 
             // Initialize game components
             _performanceStatistics = new PerformanceStatistics(this);
+
+            // Initialize game state manager
             StateManager = new GameStateManager(this);
 
             // Initialize states
             GameLobby = new LobbyState(this);
+            GameWorld = new WorldState(this);
 
             // Add game components
             Components.Add(_performanceStatistics);
             Components.Add(StateManager);
 
             StateManager.ChangeState((LobbyState)GameLobby); // Change state to game lobby
+            //StateManager.ChangeState((WorldState)GameWorld);
 
             // Enable unlimited FPS, mouse visible and set title
             IsFixedTimeStep = false;

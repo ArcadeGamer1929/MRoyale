@@ -1,9 +1,11 @@
 ﻿#region Using Statements
+using System;
+
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Input;
 
 using CyuubiApps.Engine.StateManager;
-using System;
 #endregion
 
 namespace MRoyale.GameStates.Lobby
@@ -16,7 +18,9 @@ namespace MRoyale.GameStates.Lobby
         #region Field Region
 
         private KeyboardState _previousState;
-        private PlayerPad _playerPad;
+        private PlayerPad[] _playerPads;
+
+        //private SoundEffect _playerPadChange;
 
         private bool _characterToggle;
 
@@ -37,11 +41,24 @@ namespace MRoyale.GameStates.Lobby
         public override void Initialize()
         {
             _previousState = Keyboard.GetState();
-            _playerPad = new PlayerPad(gameBase); // TODO: Should be here?
+            _playerPads = new PlayerPad[4];
 
-            _playerPad.OnPadClick += OnPadClick;
-            _playerPad.Position = new Vector2(250, 100);
-            _playerPad.Scale = 8;
+            var scale = 4;
+            var x = 25 * scale;
+            for (var index = 0; index < _playerPads.Length; index++)
+            {
+                _playerPads[index] = new PlayerPad(gameBase);
+
+                var playerPad = _playerPads[index];
+
+                playerPad.OnPadClick += OnPadClick;
+                playerPad.Position = new Vector2(x, 50 * scale);
+                playerPad.Scale = scale;
+
+                x += 40 * scale;
+            }
+
+            //_playerPadChange = content.Load<SoundEffect>("player-pad-change");
 
             base.Initialize();
         }
@@ -55,10 +72,50 @@ namespace MRoyale.GameStates.Lobby
         {
             KeyboardState state = Keyboard.GetState();
 
-            if (state.IsKeyDown(Keys.Space) & !_previousState.IsKeyDown(Keys.Space))
+            if (state.IsKeyDown(Keys.Z) & !_previousState.IsKeyDown(Keys.Z))
             {
-                if (!_characterToggle) _playerPad.ChangeCharacter("mario");
-                else _playerPad.ChangeCharacter("paddler");
+                //_playerPadChange.Play();
+
+                var playerPad = _playerPads[0];
+
+                if (!_characterToggle) playerPad.ChangeCharacter("mario");
+                else playerPad.ChangeCharacter("paddler");
+
+                _characterToggle = !_characterToggle;
+            }
+
+            if (state.IsKeyDown(Keys.X) & !_previousState.IsKeyDown(Keys.X))
+            {
+                //_playerPadChange.Play();
+
+                var playerPad = _playerPads[1];
+
+                if (!_characterToggle) playerPad.ChangeCharacter("mario");
+                else playerPad.ChangeCharacter("luigi");
+
+                _characterToggle = !_characterToggle;
+            }
+
+            if (state.IsKeyDown(Keys.C) & !_previousState.IsKeyDown(Keys.C))
+            {
+                //_playerPadChange.Play();
+
+                var playerPad = _playerPads[2];
+
+                if (!_characterToggle) playerPad.ChangeCharacter("mario");
+                else playerPad.ChangeCharacter("paddler");
+
+                _characterToggle = !_characterToggle;
+            }
+
+            if (state.IsKeyDown(Keys.V) & !_previousState.IsKeyDown(Keys.V))
+            {
+                //_playerPadChange.Play();
+
+                var playerPad = _playerPads[3];
+
+                if (!_characterToggle) playerPad.ChangeCharacter("mario");
+                else playerPad.ChangeCharacter("luigi");
 
                 _characterToggle = !_characterToggle;
             }
@@ -70,14 +127,22 @@ namespace MRoyale.GameStates.Lobby
 
         public override void FixedUpdate(float updateTime)
         {
-            _playerPad.Update(updateTime);
+            for (var index = 0; index < _playerPads.Length; index++)
+            {
+                var playerPad = _playerPads[index];
+                if (playerPad != null) playerPad.Update(updateTime);
+            }
 
             base.FixedUpdate(updateTime);
         }
 
         public override void Draw(GameTime gameTime)
         {
-            _playerPad.Draw(gameTime);
+            for (var index = 0; index < _playerPads.Length; index++)
+            {
+                var playerPad = _playerPads[index];
+                if (playerPad != null) playerPad.Draw(gameTime);
+            }
 
             base.Draw(gameTime);
         }

@@ -1,7 +1,11 @@
-﻿using Microsoft.Xna.Framework;
+﻿#region Using Statements
+using System;
+
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using System;
+#endregion
 
 namespace MRoyale.GameStates.Lobby
 {
@@ -28,7 +32,10 @@ namespace MRoyale.GameStates.Lobby
 
         private MouseState _previousMouseState;
 
-        private bool _playerPadHover;
+        private bool _playerPadInputHover;
+        private bool _playerPadInputHoverExited;
+
+        //private SoundEffect _playerPadHover;
 
         private Texture2D _playerPad;
         private Texture2D _playerPadLighting;
@@ -48,6 +55,8 @@ namespace MRoyale.GameStates.Lobby
             _gameBase = gameBase;
 
             _previousMouseState = Mouse.GetState();
+
+            //_playerPadHover = _gameBase.Content.Load<SoundEffect>("player-pad-hover");
 
             _playerPad = _gameBase.Content.Load<Texture2D>("player-pad");
             _playerPadLighting = _gameBase.Content.Load<Texture2D>("player-pad-lighting");
@@ -96,12 +105,18 @@ namespace MRoyale.GameStates.Lobby
             var lobbyPadRectangle = new Rectangle((int)Position.X, (int)Position.Y, _playerPad.Width * Scale, _playerPad.Height * Scale);
             if (lobbyPadRectangle.Contains(mousePoint))
             {
-                _playerPadHover = true;
+                _playerPadInputHover = true;
 
                 if (mouseState.LeftButton == ButtonState.Pressed && _previousMouseState.LeftButton != ButtonState.Pressed)
                     OnPadClick?.Invoke(this, EventArgs.Empty);
             }
-            else _playerPadHover = false;
+            else { _playerPadInputHover = false; _playerPadInputHoverExited = true; }
+
+            if (_playerPadInputHover == true && _playerPadInputHoverExited == true)
+            {
+                //_playerPadHover.Play();
+                _playerPadInputHoverExited = false;
+            }
 
             if (_playerStatus == PlayerStatus.Jumping)
             {
@@ -134,7 +149,7 @@ namespace MRoyale.GameStates.Lobby
         {
             _gameBase.SpriteBatch.Draw(_playerPad, Position, null, Color.White, 0, Vector2.Zero, new Vector2(Scale, Scale), SpriteEffects.None, 0);
             _gameBase.SpriteBatch.Draw(_playerPadLighting, Position, null, Color.White, 0, Vector2.Zero, new Vector2(Scale, Scale), SpriteEffects.None, 0);
-            if (_playerPadHover) _gameBase.SpriteBatch.Draw(_playerPadLighting, Position, null, Color.White, 0, Vector2.Zero, new Vector2(Scale, Scale), SpriteEffects.None, 0);
+            if (_playerPadInputHover) _gameBase.SpriteBatch.Draw(_playerPadLighting, Position, null, Color.White, 0, Vector2.Zero, new Vector2(Scale, Scale), SpriteEffects.None, 0);
             _gameBase.SpriteBatch.Draw(_player, Position + _playerPosition + _playerTransform, null, Color.White, 0, Vector2.Zero, new Vector2(Scale, Scale), SpriteEffects.None, 0);
         }
     }

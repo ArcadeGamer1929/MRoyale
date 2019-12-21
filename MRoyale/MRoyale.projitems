@@ -19,6 +19,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)GameBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GameStates\Lobby\LobbyState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GameStates\Lobby\PlayerPad.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GameStates\World\WorldState.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Support\DrawableGameComponent.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)GameStates\Lobby\" />
