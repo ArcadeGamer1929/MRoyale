@@ -1,11 +1,12 @@
-﻿using static Retyped.dom;
-using Microsoft.Xna.Framework;
+﻿#region Using Statements
+using static Retyped.dom;
+#endregion
 
 namespace MRoyale.Bridge
 {
     public class App
     {
-        private static Game _gameBase;
+        private static GameBase _gameBase;
 
         public static void Main()
         {
